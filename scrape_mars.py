@@ -10,7 +10,7 @@ def scrape():
     nasaUrl = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
     html = requests.get(nasaUrl)
     
-    soup = bs(html.text, 'lxml')
+    soup = bs(html.text, 'html5lib')
    
     news_title = soup.find_all(class_='content_title')[0].text
     news_p = soup.find_all(class_='rollover_description_inner')[0].text
@@ -32,7 +32,7 @@ def scrape():
     twitterUrl = 'https://twitter.com/marswxreport?lang=en'
     html = requests.get(twitterUrl)
     
-    soup = bs(html.text, 'lxml')
+    soup = bs(html.text, 'html5lib')
     
     marsWeather = soup.find_all(class_='TweetTextSize')[0].text
     
@@ -40,6 +40,12 @@ def scrape():
     marsFactsUrl = 'https://space-facts.com/mars/'
     
     df = pd.read_html(marsFactsUrl)[0]
+   
+    df = df.rename(columns={0: 'Description', 1: 'Value'})
+    df = df.set_index('Description')
+    
+    df = df.to_dict()
+    marsfactsdict = df['Value']
     
     #Hemispheres
     marsHemispheresUrl = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -75,7 +81,7 @@ def scrape():
     title = browser.find_by_css('h2[class = title]').text
     hemiList.append(dict({'title': title, 'img_url': img_url}))
 
-    scrapedDict = {'news_title': news_title, 'news_p': news_p, 'featured_image':featuredImageUrl, 'weather': marsWeather, 'facts': df, 'hemispheres': hemiList}
+    scrapedDict = {'news_title': news_title, 'news_p': news_p, 'featured_image':featuredImageUrl, 'weather': marsWeather, 'facts': marsfactsdict, 'hemispheres': hemiList}
 
     return scrapedDict
 
