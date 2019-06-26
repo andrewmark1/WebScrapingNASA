@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Info on Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <div class="container">
+        <h2> Latest Mars News </h2>
+        {{mars.news_title}}
+        <p> {{mars.news_p}}</p>
+    </div>
+    </div>
+
+      <div class="container-fluid">
+    <div class="container">
+        <h2> Current Weather on Mars </h2>
+        {{mars.weather}}
+    </div>
+    </div>
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <p class="lead"><img src="{{ mars.featured_image}}" alt="MarsImage"></p>
+        </div>
+        <div class="col-md-4">
+        <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Description</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Equatorial Diameter:</th>
+          <td>{{mars.facts['Equatorial Diameter:']}}</td>
+        </tr>
+              <tr>
+          <th scope="row">Polar Diameter:</th>
+          <td>{{mars.facts['Polar Diameter:']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Mass:</th>
+          <td>{{mars.facts['Mass:']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Moons:</th>
+          <td>{{mars.facts['Moons:']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Orbit Distance:</th>
+          <td>{{mars.facts['Orbit Distance:']}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Orbit Period:</th>
+          <td>{{mars.facts['Orbit Period:']}}</td>
+        </tr>
+                    <tr>
+          <th scope="row">Surface Temperature:</th>
+          <td>{{mars.facts['Surface Temperature:']}}</td>
+        </tr>
+                    <tr>
+          <th scope="row">First Record:</th>
+          <td>{{mars.facts['First Record:']}}</td>
+        </tr>
+                    <tr>
+          <th scope="row">Recorded By:</th>
+          <td>{{mars.facts['Recorded By:']}}</td>
+        </tr>
+      </tbody>
+    </table>
+        </div>
+    </div>
+    </div>
+
+<div class="container">
+  <h3 class="text-center">Hemispheres</h3>
+    <div class="row">
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img src="{{ mars.hemispheres[0].img_url}}" alt="..." class="img-thumbnail">
+          </div>
+          <div class="caption">
+              <h3>{{mars.hemispheres[0].title}}</h3>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="thumbnail">
+              <img src="{{ mars.hemispheres[1].img_url}}" alt="..." class="img-thumbnail">
+            </div>
+          <div class="caption">
+              <h3>{{mars.hemispheres[1].title}}</h3>
+          </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img src="{{ mars.hemispheres[2].img_url}}" alt="..." class="img-thumbnail">
+          </div>
+          <div class="caption">
+              <h3>{{mars.hemispheres[2].title}}</h3>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="thumbnail">
+              <img src="{{ mars.hemispheres[3].img_url}}" alt="..." class="img-thumbnail">
+            </div>
+          <div class="caption">
+              <h3>{{mars.hemispheres[3].title}}</h3>
+          </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
